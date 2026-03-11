@@ -1,24 +1,230 @@
+:root {
+  color-scheme: light;
+  --fb-blue: #1594ff;
+  --fb-blue-deep: #0a4f89;
+  --fb-orange: #ff8d2a;
+  --fb-orange-deep: #bf5b0b;
+  --metal-900: #121922;
+  --metal-800: #1a2532;
+  --metal-700: #2a3645;
+  --metal-500: #6b7a8d;
+  --metal-200: #c8d2de;
+  --text-main: #eaf4ff;
+}
+
 * {
-    font-family: sans-serif;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Avenir Next", "Trebuchet MS", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(165deg, #112033 0%, #1b3047 36%, #162940 100%);
+}
+
+.calculator-shell {
+  width: min(440px, 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border-radius: 26px;
+  border: 1px solid rgba(226, 236, 247, 0.9);
+  background:
+    linear-gradient(158deg, #7f91a7 0%, #667b94 44%, #4f647c 100%);
+}
+
+.calculator-title {
+  margin: 0 0 16px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #f5fbff;
+}
+
+.calculator-form {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.display-panel {
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid rgba(21, 148, 255, 0.48);
+  background: linear-gradient(180deg, #0f1924 0%, #101a28 100%);
+  min-width: 0;
+}
+
+.result-display {
+  margin: 0 0 14px;
+  min-height: 54px;
+  height: 54px;
+  border-radius: 9px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background:
+    linear-gradient(180deg, #061120 0%, #0b1a30 100%);
+  border: 1px solid rgba(21, 148, 255, 0.35);
+  color: #80d4ff;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.result-text {
+  margin-left: auto;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.05;
+  font-family: "Consolas", "SFMono-Regular", "Roboto Mono", monospace;
+  font-size: 1.95rem;
+  text-align: right;
+}
+
+.result-display--message .result-text {
+  font-family: "Segoe UI", "Avenir Next", "Trebuchet MS", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.number-input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(200, 210, 222, 0.34);
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  background:
+    linear-gradient(180deg, #d8e5f2 0%, #c8d7e8 100%);
+  color: #152334;
+}
+
+.number-input:focus {
+  outline: none;
+  border-color: rgba(21, 148, 255, 0.72);
+}
+
+.keypad {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  border: 1px solid rgba(200, 210, 222, 0.24);
+  border-radius: 12px;
+  min-height: 52px;
+  padding-inline: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-main);
+  background:
+    linear-gradient(180deg, #526072 0%, #3d4b5e 48%, #323f51 100%);
+  transition: transform 110ms ease, filter 110ms ease;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(234, 244, 255, 0.85);
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.995);
+}
+
+.btn-wide {
+  grid-column: span 2;
+}
+
+.btn-utility {
+  background:
+    linear-gradient(180deg, #1f7fca 0%, #1566ab 58%, #0f4c82 100%);
+  border-color: rgba(117, 194, 255, 0.46);
+}
+
+.btn-operator {
+  color: #261100;
+  padding-inline: 8px;
+  font-size: clamp(0.72rem, 2.1vw, 0.82rem);
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  background:
+    linear-gradient(180deg, #ffb563 0%, #ff9131 54%, #d36713 100%);
+  border-color: rgba(255, 208, 160, 0.72);
+}
+
+@media (max-width: 720px) {
+  .keypad {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
-  input,
-  button {
-    font-size: 20px;
-    padding: 10px;
-    border-radius: 5px;
+
+  .btn-wide {
+    grid-column: span 1;
   }
-  input {
-    display: block;
-    margin-bottom: 20px;
+
+  .btn {
+    min-width: 0;
+    padding-inline: 10px;
+    letter-spacing: 0.01em;
+    font-size: 0.88rem;
   }
-  button {
-    border: 1px solid gray;
-    background: whitesmoke;
-    margin-right: 5px;
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 16px;
   }
-  button:nth-last-child(2),
-  button:nth-last-child(1) {
-    background: tomato;
-    color: white;
+
+  .calculator-shell {
+    padding: 18px;
   }
+
+  .btn {
+    min-height: 49px;
+    font-size: 0.82rem;
+    padding-inline: 8px;
+  }
+
+  .result-display {
+    font-size: 1.58rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:focus,
+  .btn:focus-visible {
+    outline: none;
+  }
+}
   
